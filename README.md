@@ -60,6 +60,8 @@
 ## Wireframes
 Schedule Builder Protoype layout: https://www.figma.com/file/04oPo59pUFCNJsO3yAPY4r/Schedule-Builder?node-id=0%3A1
 Todo layout:
+<img src='mobileappcalendarmock.png' title='Mock Calendar' width='' alt='Mock Calendar' />
+<img src='To_Do_List_Mockup.png' title='Mock ToDo' width='' alt='Mock ToDo' />
 https://github.com/Schedule-Builder/ScheduleBuilder/blob/master/mobileappcalendarmock.png
 https://github.com/Schedule-Builder/ScheduleBuilder/blob/master/To_Do_List_Mockup.png
 
