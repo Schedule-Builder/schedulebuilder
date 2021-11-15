@@ -2,13 +2,14 @@ package com.example.schedulebuilder;
 
 public class Event {
     
-    private String name;
-    private boolean locked;
-    private boolean morning;
-    private int startTime;
-    private int endTime;
-    private int priority;
+    private String name; // this variable is the name of the event
+    private boolean locked; // this variable decides whether or not this event can be dragged to a new time (true)
+    private boolean morning; // this variable tells whether it is morning (true) or after noon (false)
+    private int startTime; // this variable includes the start time of the event
+    private int endTime; // this variable includes the end time of the event
+    private int priority; // this variable contains the priority level of the event, which is important for the bot
     
+    //this method is to make the event based on what the user initially puts in
     public makeEvent(String name, boolean locked, boolean morning, int startTime, int endTime, int priority){
         this.name = name;
         this.locked = locked;
@@ -18,7 +19,7 @@ public class Event {
         this.priority = priority;
     }
     
-    
+    // typical getters and setters
     public String getName(){
         return name;
     }
@@ -68,7 +69,7 @@ public class Event {
         this.priority = priority;
     }
     
-    
+    // converts to military time from regular time
     public void toMilitary(Event e){
         if (e.morning && e.startTime >= 1200)
             e.startTime -= 1200;
@@ -81,6 +82,7 @@ public class Event {
             e.endTime += 1200;
     }
     
+    // converts to regular time from military
     public int fromMilitary(Event e){
         if (e.startTime >= 1200){
             e.morning = false;
@@ -105,10 +107,12 @@ public class Event {
         }
     }
     
+    // displays the int time as a string an the proper format (military time)
     public String displayTime(int time){
         return Integer.toString(time / 1000) + Integer.toString(time / 100 % 10) + ":" + Integer.toString(time % 100 - time % 10) + Integer.toString(time % 10);
     }
     
+    // displays the int time as a string an the proper format (regular time)
     public String displayTime(int time, boolean morning){
         String str = "PM";
         if (morning)
