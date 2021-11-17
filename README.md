@@ -66,13 +66,14 @@ Todo layout:
 ## Schema
 
 **Models**
+Events
 | Property      | Type          | Description  |
 | ------------- |:-------------:| ------------:|
-| name      | String       |     name of event            |
+| name      | String       | name of event                |
 | locked    | boolean      |                              |
-| isMorning | boolean      |    if it is morning or not   |
-| startTime | int          |      start of the event      | 
-| endTime   | int          |       end of the event       |
+| isMorning | boolean      | if it is morning or not      |
+| startTime | int          | start of the event           | 
+| endTime   | int          | end of the event             |
 | priority  | int          | the events order of priority |
 
 
