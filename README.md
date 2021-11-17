@@ -63,3 +63,18 @@ Todo layout:
 <img src='mobileappcalendarmock.png' title='Mock Calendar' width='' alt='Mock Calendar' />
 <img src='To_Do_List_Mockup.png' title='Mock ToDo' width='' alt='Mock ToDo' />
 
+## Schema
+
+**Models**
+| Property      | Type          | Description  |
+| ------------- |:-------------:| ------------:|
+| name      | String       |     name of event            |
+| locked    | boolean      |                              |
+| isMorning | boolean      |    if it is morning or not   |
+| startTime | int          |      start of the event      | 
+| endTime   | int          |       end of the event       |
+| priority  | int          | the events order of priority |
+
+
+**Networking**
+
