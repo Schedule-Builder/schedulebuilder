@@ -67,15 +67,53 @@ Todo layout:
 
 **Models**
 Events
+
 | Property      | Type          | Description  |
 | ------------- |:-------------:| ------------:|
-| name      | String       | name of event                |
-| locked    | boolean      |                              |
-| isMorning | boolean      | if it is morning or not      |
-| startTime | int          | start of the event           | 
-| endTime   | int          | end of the event             |
-| priority  | int          | the events order of priority |
+| name      | String       | name of event                       |
+| locked    | boolean      | if the timeframe can change or not  |
+| isMorning | boolean      | if it is morning or not             |
+| startTime | int          | start of the event                  | 
+| endTime   | int          | end of the event                    |       
+| priority  | int          | the events order of priority        |
+
+User 
+
+| Property      | Type          | Description  |
+| ------------- |:-------------:| ------------:|
+| militaryTime  | boolean      | if user wants military time or not |
+| cardDisplay   | boolean      | activates card view                |
+| timeTracker   | boolean      | activates notifications            |
 
 
 **Networking**
+#### List of network requests by screen
+   - Home Calendar Screen
+      - (Read/GET) Query all posts where user is author
+         ```swift
+         let query = PFQuery(className:"Event")
+         query.whereKey("name", equalTo: currentUser)
+         query.order(byDescending: "priority")
+         query.findObjectsInBackground { (events: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let events = events {
+               print("Successfully retrieved \(events.count) event.")
+           // TODO: Do something with posts...
+            }
+         }
+         ```
+   - Create Calendar Screen  
+      - (Read/GET) schedule on given day
+      - (Create/EVENT) priority cards
+      - (Delete) existing priority cards
+      - (Update/PUT) priority cards and schedule
+   - Create Leaderboard
+      - (Read/GET) Leaderboard 
 
+   - Settings
+      - (Read/GET) card information
+      - (Update/PUT) update time and get miltitary time
+      - (Read/GET) notifications for user
+
+     
