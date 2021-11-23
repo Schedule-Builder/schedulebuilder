@@ -18,7 +18,7 @@
 **Required Must-have Stories**
 
 * User is able to make event cards
--[x] User can check the day and week of the month
+- [x] User can check the day and week of the month
 * User is able to choose the priority of the cards
 * Cards can be ordered based on what the user chose as priority
 * User can see a simple to-do list
