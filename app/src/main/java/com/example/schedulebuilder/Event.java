@@ -1,6 +1,8 @@
 package com.example.schedulebuilder;
 
-public class Event {
+import java.util.Comparator;
+
+public class Event{
     
     private String name; // this variable is the name of the event
     private boolean locked; // this variable decides whether or not this event can be dragged to a new time (true)
@@ -68,6 +70,40 @@ public class Event {
     public void setPriority(int priority){
         this.priority = priority;
     }
+    
+    // To allow the sort method to sort by start time
+    public static Comparator<Event> EventStart = new Comparator<Event>() {
+
+	public int compare(Event e1, Event e2) {
+
+	   int time1 = e1.getStartTime();
+	   int time2 = e2.getStartTime();
+
+	   /*For ascending order*/
+	   return time1-time2;
+
+	   /*For descending order*/
+	   //rollno2-rollno1;
+        
+       // implementation: Collections.sort(arraylist, Event.EventStart);
+   }};
+    
+    // To allow the sort method to sort by priority level
+    public static Comparator<Event> PLevel = new Comparator<Event>() {
+
+	public int compare(Event e1, Event e2) {
+
+	   int time1 = e1.getPriority();
+	   int time2 = e2.getPriority();
+
+	   /*For ascending order*/
+	   return time1-time2;
+
+	   /*For descending order*/
+	   //rollno2-rollno1;
+        
+       // implementation: Collections.sort(arraylist, Event.PLevel);
+   }};
     
     // converts to military time from regular time
     public void toMilitary(Event e){
