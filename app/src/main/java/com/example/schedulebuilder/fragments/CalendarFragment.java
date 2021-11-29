@@ -1,5 +1,6 @@
 package com.example.schedulebuilder.fragments;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -13,10 +14,13 @@ import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
+import com.example.schedulebuilder.MainActivity;
+import com.example.schedulebuilder.PriorityCard;
 import com.example.schedulebuilder.R;
 
 
 public class CalendarFragment extends Fragment {
+
 
     CalendarView simpleCalendarView;
     public CalendarFragment() {
@@ -44,11 +48,16 @@ public class CalendarFragment extends Fragment {
         simpleCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                // display the selected date by using a toast
-               // Toast.makeText(view.this, dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+
+                String date = dayOfMonth + "/" + month +"/" + year;// display the selected date by using a toast
+
+                Intent intent = new Intent(getActivity(), PriorityCard.class);
+                startActivity(intent);
+                // Toast.makeText(view.this, dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
             }
         });
     }
+
 
 
 }
