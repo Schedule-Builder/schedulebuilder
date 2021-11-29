@@ -12,7 +12,7 @@ public class Event{
     private int priority; // this variable contains the priority level of the event, which is important for the bot
     
     //this method is to make the event based on what the user initially puts in
-    public makeEvent(String name, boolean locked, boolean morning, int startTime, int endTime, int priority){
+    public void makeEvent(String name, boolean locked, boolean morning, int startTime, int endTime, int priority){
         this.name = name;
         this.locked = locked;
         this.morning = morning;
@@ -140,7 +140,7 @@ public class Event{
             e.morning = true;
             if (e.endTime < 100)
                 e.endTime += 1200;
-        }
+        };
     }
     
     // displays the int time as a string an the proper format (military time)
