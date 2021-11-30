@@ -17,9 +17,9 @@
 
 **Required Must-have Stories**
 
-* User is able to make event cards
+- [x] User is able to make event cards
 - [x] User can check the day and week of the month
-* User is able to choose the priority of the cards
+- [x] User is able to choose the priority of the cards
 * Cards can be ordered based on what the user chose as priority
 * User can see a simple to-do list
 **Optional Nice-to-have Stories**
@@ -119,5 +119,11 @@ User
 
 **Updates**
 #### Gifs
+## Update 1: 
 https://github.com/Schedule-Builder/ScheduleBuilder/blob/master/Schedule_Builder_Update.gif
+
+## Update :
+Currently we are trying to get the title of the event card to show up on the day when you press the save button
+
+
      
