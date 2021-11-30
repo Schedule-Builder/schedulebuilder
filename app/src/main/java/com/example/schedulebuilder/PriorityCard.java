@@ -39,7 +39,7 @@ public class PriorityCard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_card);
 
-        saveItems();
+        //saveItems();
 
         btnAdd = findViewById(R.id.btnAdd);
         etItem = findViewById(R.id.etItem);
@@ -47,7 +47,7 @@ public class PriorityCard extends AppCompatActivity {
         eventBtn = findViewById(R.id.eventBtn);
         saveBtn = findViewById(R.id.saveBtn);
 
-        loadItems();
+        /**loadItems();
 
         ItemAdapter.OnLongClickListener onLongClickListener = new ItemAdapter.OnLongClickListener() {
             @Override
@@ -64,7 +64,7 @@ public class PriorityCard extends AppCompatActivity {
 
         itemsAdapter = new ItemAdapter(items, onLongClickListener);
         rvItems.setAdapter(itemsAdapter);
-        rvItems.setLayoutManager(new LinearLayoutManager(this));
+        rvItems.setLayoutManager(new LinearLayoutManager(this));**/
 
 
         eventBtn= findViewById(R.id.eventBtn);
@@ -80,7 +80,7 @@ public class PriorityCard extends AppCompatActivity {
                 startActivity(i);
 
 
-                Toast.makeText(getApplicationContext(), "item was added", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), cards.getString(), Toast.LENGTH_SHORT).show();
 
 
 
@@ -89,7 +89,7 @@ public class PriorityCard extends AppCompatActivity {
 
     }
 
-    private File getDataFile() {
+    /**private File getDataFile() {
         return new File(getFilesDir(), "data.txt");
     }
 
@@ -110,7 +110,7 @@ public class PriorityCard extends AppCompatActivity {
         } catch(IOException e){
             Log.e("MainActivity","Error writing item", e );
         }
-    }
+    }**/
 
 
     //This function saves items by writing them into the data file

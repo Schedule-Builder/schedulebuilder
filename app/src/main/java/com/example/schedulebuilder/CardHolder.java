@@ -40,6 +40,8 @@ public class CardHolder extends PriorityCard{
     RecyclerView rvItems;
     ItemAdapter itemsAdapter;
 
+    public static List<String> items;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,44 +59,116 @@ public class CardHolder extends PriorityCard{
         title = findViewById(R.id.title);
       //  start = findViewById(R.id.startDate);
        // end = findViewById(R.id.endDate);
-    }
 
-        public void updateText(View view){
+        loadItems();
+
+
+
+
+
+
+
+
+
+
+            rvItems = findViewById(R.id.rvItems);
+
+            saveBtn = findViewById(R.id.saveBtn);
+
+           // loadItems();
+
+         /** ItemAdapter.OnLongClickListener onLongClickListener = new ItemAdapter.OnLongClickListener() {
+                @Override
+                public void onItemClicked(int position) {
+                    //Deletes the item from the model
+                   // items.remove(position);
+                    //Notify the adapter
+                    itemsAdapter.notifyItemRemoved(position);
+                    Toast.makeText(getApplicationContext(), "item was remove", Toast.LENGTH_SHORT).show();
+                    //saveItems();
+                }
+
+            };
+            itemsAdapter = new ItemAdapter(items, onLongClickListener);
+            rvItems.setAdapter(itemsAdapter);**/
+           // rvItems.setLayoutManager(new LinearLayoutManager(this));
+         saveBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+
+                priority.setText(priorityNum.getText());
+                explanation.setText(detailedExplanation.getText());
+                title.setText(titleLine.getText());
+                start.setText(endDate.getText());
+                end.setText(startDate.getText());
+                //Modify adapter that an item is inserted
+                String t = getString(title);
+                //Add item to the model
+                items.add(t);
+                //Modify adapter that an item is inserted
+                //itemsAdapter.notifyItemInserted(items.size() - 1);
+
+                Toast.makeText(getApplicationContext(), "item was added", Toast.LENGTH_SHORT).show();
+                saveItems();
+
+
+
+
+               // Intent i = new Intent(CardHolder.this,PriorityCard.class);
+                //startActivity(i);
+
+
+            }
+        });
+
+
+        }
+
+
+
+        //This function saves items by writing them into the data file
+
+
+       /** public void updateText(View view){
             priority.setText(priorityNum.getText());
             explanation.setText(detailedExplanation.getText());
             title.setText(titleLine.getText());
             start.setText(endDate.getText());
             end.setText(startDate.getText());
-             saveBtn.setOnClickListener(new View.OnClickListener() {
-
-               @Override
-                public void onClick(View v) {
-                    // TODO Auto-generated method stub
 
 
-                   //Modify adapter that an item is inserted
-                   getList();
+        }**/
 
 
-                  //Intent i = new Intent(CardHolder.this,PriorityCard.class);
-                  //startActivity(i);
 
-                }
-            });
-
-        }
-        public List<String> getList(){
-            String item = cards.getString();
-            //Add item to the model
-            PriorityCard.items.add(item);
-            itemsAdapter.notifyItemInserted(items.size() - 1);
-
-         return items;
-        }
-
-        public String getString(){
+        public String getString(TextView title){
             return title.getText().toString();
         }
+
+    private File getDataFile() {
+        return new File(getFilesDir(), "data.txt");
+    }
+
+    //This function will load items by reading every line of the data file
+    private void loadItems() {
+        try {
+            items = new ArrayList<>(FileUtils.readLines(getDataFile(), Charset.defaultCharset()));
+        } catch (IOException e) {
+            Log.e("MainActivity","Error reading item", e );
+            items = new ArrayList<>();
+        }
+
+    }
+
+    public void saveItems(){
+        try {
+            FileUtils.writeLines(getDataFile(), items);
+        } catch(IOException e){
+            Log.e("MainActivity","Error writing item", e );
+        }
+    }
 
 
 
