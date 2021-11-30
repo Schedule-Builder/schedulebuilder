@@ -122,7 +122,8 @@ User
 ## Update 1: 
 https://github.com/Schedule-Builder/ScheduleBuilder/blob/master/Schedule_Builder_Update.gif
 
-## Update :
+## Update 2:
+https://github.com/Schedule-Builder/ScheduleBuilder/blob/master/Schedule_Builder_Update2.gif
 Currently we are trying to get the title of the event card to show up on the day when you press the save button
 
 
