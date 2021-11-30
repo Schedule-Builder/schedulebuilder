@@ -1,5 +1,7 @@
 package com.example.schedulebuilder;
 
+import java.util.Comparator;
+
 public class Event {
 
     private String name;
@@ -80,6 +82,39 @@ public class Event {
         else if (!e.morning && e.endTime < 1200)
             e.endTime += 1200;
     }
+    public static Comparator<Event> EventStart = new Comparator<Event>() {
+
+        public int compare(Event e1, Event e2) {
+
+            int time1 = e1.getStartTime();
+            int time2 = e2.getStartTime();
+
+            /*For ascending order*/
+            return time1-time2;
+
+            /*For descending order*/
+            //rollno2-rollno1;
+
+            // implementation: Collections.sort(arraylist, Event.EventStart);
+        }};
+
+    // To allow the sort method to sort by priority level
+    public static Comparator<Event> PLevel = new Comparator<Event>() {
+
+        public int compare(Event e1, Event e2) {
+
+            int time1 = e1.getPriority();
+            int time2 = e2.getPriority();
+
+            /*For ascending order*/
+            return time1-time2;
+
+            /*For descending order*/
+            //rollno2-rollno1;
+
+            // implementation: Collections.sort(arraylist, Event.PLevel);
+        }};
+
 
     public int fromMilitary(Event e){
         if (e.startTime >= 1200){

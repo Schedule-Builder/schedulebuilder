@@ -21,6 +21,8 @@
         <activity
             android:name=".PriorityCard"
             android:theme="@style/AppDialogTheme" />
+        <activity
+            android:name=".CardHolder"/>
 
     </application>
 

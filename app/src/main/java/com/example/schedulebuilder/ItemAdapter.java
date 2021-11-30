@@ -16,11 +16,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
         void onItemClicked(int position);
     }
 
-    List<String> items;
+    List<String> titleList;
     OnLongClickListener longClickListener;
 
-    public ItemAdapter(List<String> items, OnLongClickListener longClickListener) {
-        this.items = items;
+    public ItemAdapter(List<String> titleList, OnLongClickListener longClickListener) {
+        this.titleList = titleList;
         this.longClickListener = longClickListener;
     }
 
@@ -37,7 +37,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Grab the item at the position
-        String item = items.get(position);
+        String item = titleList.get(position);
         //Bind the item into the specified view holder
         holder.bind(item);
 
@@ -45,7 +45,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
     //Tells the RV how many items are in the limit
     @Override
     public int getItemCount() {
-        return items.size();
+        return titleList.size();
     }
 
     //Container to provide easy access to view that represent each row of the list
