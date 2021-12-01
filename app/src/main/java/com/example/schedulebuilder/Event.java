@@ -1,23 +1,25 @@
 package com.example.schedulebuilder;
 
+import android.widget.TextView;
+
 import java.util.Comparator;
 
-public class Event {
+public class Event extends CardHolder{
 
-    private String name;
-    private boolean locked;
-    private boolean morning;
-    private int startTime;
-    private int endTime;
-    private int priority;
+    protected String name;
+    protected boolean locked;
+    protected boolean morning;
+    protected int startTime;
+    protected int endTime;
+    protected int priority;
 
     public Event(String name, boolean locked, boolean morning, int startTime, int endTime, int priority){
-        this.name = name;
+        this.name = name; //title.getText().toString();
         this.locked = locked;
         this.morning = morning;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.priority = priority;
+        this.priority = priority;//Integer.valueOf(prty.getText().toString());
     }
 
 
@@ -71,7 +73,7 @@ public class Event {
     }
 
 
-    public void toMilitary(Event e){
+    /**public void toMilitary(Event e){
         if (e.morning && e.startTime >= 1200)
             e.startTime -= 1200;
         else if (!e.morning && e.startTime < 1200)
@@ -90,13 +92,13 @@ public class Event {
             int time2 = e2.getStartTime();
 
             /*For ascending order*/
-            return time1-time2;
+           // return time1-time2;
 
             /*For descending order*/
             //rollno2-rollno1;
 
             // implementation: Collections.sort(arraylist, Event.EventStart);
-        }};
+        /**}};
 
     // To allow the sort method to sort by priority level
     public static Comparator<Event> PLevel = new Comparator<Event>() {
@@ -107,16 +109,16 @@ public class Event {
             int time2 = e2.getPriority();
 
             /*For ascending order*/
-            return time1-time2;
+           // return time1-time2;
 
             /*For descending order*/
             //rollno2-rollno1;
 
             // implementation: Collections.sort(arraylist, Event.PLevel);
-        }};
+       // }};
 
 
-    public int fromMilitary(Event e){
+   /** public int fromMilitary(Event e){
         if (e.startTime >= 1200){
             e.morning = false;
             if (e.startTime >= 1300)
@@ -151,5 +153,5 @@ public class Event {
             str = "AM";
         return Integer.toString(time / 1000) + Integer.toString(time / 100 % 10) + ":" + Integer.toString(time % 100 - time % 10) + Integer.toString(time % 10)
                 + " " + str;
-    }
+    }**/
 }

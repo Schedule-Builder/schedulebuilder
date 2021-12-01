@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,12 +28,14 @@ public class CardHolder extends PriorityCard{
 
 
     Button saveBtn;
+    Switch locked;
+    Switch morning;
     EditText priorityNum;
     EditText detailedExplanation;
     EditText titleLine;
-    EditText startDate;
-    EditText endDate;
-    TextView priority;
+    EditText startTimeInput;
+    EditText endTimeInput;
+    TextView prty;
     TextView explanation;
     TextView title;
     TextView start;
@@ -40,27 +43,29 @@ public class CardHolder extends PriorityCard{
     RecyclerView rvItems;
     ItemAdapter itemsAdapter;
 
-    public static List<String> items;
+    List<Event> card=new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.priority_card);
 
-
+        saveBtn = findViewById(R.id.saveBtn);
         priorityNum = findViewById(R.id.priorityNum);
         detailedExplanation = findViewById(R.id.detailedExplanation);
         titleLine = findViewById(R.id.titleLine);
-       // startDate = findViewById(R.id.startDate);
-        //endDate = findViewById(R.id.endDate);
+        startTimeInput = findViewById(R.id.startTimeInput);
+        endTimeInput = findViewById(R.id.endTimeInput);
 
-        priority = findViewById(R.id.priorityNum);
+        prty = findViewById(R.id.priorityNum);
         explanation = findViewById(R.id.detailedExplanation);
         title = findViewById(R.id.title);
-      //  start = findViewById(R.id.startDate);
-       // end = findViewById(R.id.endDate);
+        start = findViewById(R.id.startTime);
+        end = findViewById(R.id.endTime);
 
-        loadItems();
+       /** loadItems();
 
 
 
@@ -75,49 +80,57 @@ public class CardHolder extends PriorityCard{
 
             saveBtn = findViewById(R.id.saveBtn);
 
-           // loadItems();
+            loadItems();
 
-         /** ItemAdapter.OnLongClickListener onLongClickListener = new ItemAdapter.OnLongClickListener() {
+          ItemAdapter.OnLongClickListener onLongClickListener = new ItemAdapter.OnLongClickListener() {
                 @Override
                 public void onItemClicked(int position) {
                     //Deletes the item from the model
-                   // items.remove(position);
+                    items.remove(position);
                     //Notify the adapter
                     itemsAdapter.notifyItemRemoved(position);
                     Toast.makeText(getApplicationContext(), "item was remove", Toast.LENGTH_SHORT).show();
-                    //saveItems();
+                    saveItems();
                 }
 
             };
             itemsAdapter = new ItemAdapter(items, onLongClickListener);
-            rvItems.setAdapter(itemsAdapter);**/
-           // rvItems.setLayoutManager(new LinearLayoutManager(this));
+            rvItems.setAdapter(itemsAdapter);
+            rvItems.setLayoutManager(new LinearLayoutManager(this));**/
          saveBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
-                priority.setText(priorityNum.getText());
+                prty.setText(priorityNum.getText());
                 explanation.setText(detailedExplanation.getText());
                 title.setText(titleLine.getText());
-                start.setText(endDate.getText());
-                end.setText(startDate.getText());
+                start.setText(endTimeInput.getText());
+                end.setText(startTimeInput.getText());
                 //Modify adapter that an item is inserted
                 String t = getString(title);
                 //Add item to the model
                 items.add(t);
+                int s = Integer.parseInt(start.getText().toString());
+                int e = Integer.parseInt(end.getText().toString());
+                //Event event = new Event(title.getText().toString(), true, true, Integer.valueOf(start.getText().toString()), Integer.valueOf(end.getText().toString()), Integer.valueOf(prty.getText().toString()));
+                Event event = new Event(title.getText().toString(), true, true, s, e, Integer.valueOf(prty.getText().toString()));
+               // Toast.makeText(getApplicationContext(), "here", Toast.LENGTH_SHORT).show();
+                card.add(event);
                 //Modify adapter that an item is inserted
                 //itemsAdapter.notifyItemInserted(items.size() - 1);
 
-                Toast.makeText(getApplicationContext(), "item was added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), Integer.toString(items.size()), Toast.LENGTH_SHORT).show();
                 saveItems();
 
+                priorityNum.getText().clear();
+                detailedExplanation.getText().clear();
+                titleLine.getText().clear();
 
 
-
-               // Intent i = new Intent(CardHolder.this,PriorityCard.class);
-                //startActivity(i);
+               Intent i = new Intent(CardHolder.this,PriorityCard.class);
+                startActivity(i);
 
 
             }
@@ -140,6 +153,20 @@ public class CardHolder extends PriorityCard{
 
 
         }**/
+       public void updatedCard(String t){
+         //  Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+           setContentView(R.layout.priority_card);
+        for(int i=0; i<card.size();i++){
+            if(card.get(i).name == t){
+                priorityNum.setText(card.get(i).priority);;
+                //detailedExplanation = ;
+                titleLine.setText(card.get(i).name);
+                startTimeInput.setText(card.get(i).startTime);
+                endTimeInput.setText(card.get(i).endTime);
+            }
+            }
+
+        }
 
 
 
@@ -147,7 +174,7 @@ public class CardHolder extends PriorityCard{
             return title.getText().toString();
         }
 
-    private File getDataFile() {
+   /**private File getDataFile() {
         return new File(getFilesDir(), "data.txt");
     }
 
@@ -168,7 +195,7 @@ public class CardHolder extends PriorityCard{
         } catch(IOException e){
             Log.e("MainActivity","Error writing item", e );
         }
-    }
+    }**/
 
 
 

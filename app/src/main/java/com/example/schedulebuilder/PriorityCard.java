@@ -24,8 +24,8 @@ import java.util.List;
 
 public class PriorityCard extends AppCompatActivity {
 
-    CardHolder cards;
-    public static List<String> items;
+    List<CardHolder> cards=new ArrayList<>();
+    //public static List<String> items;
 
     Button btnAdd;
     Button eventBtn;
@@ -33,6 +33,7 @@ public class PriorityCard extends AppCompatActivity {
     EditText etItem;
     RecyclerView rvItems;
     ItemAdapter itemsAdapter;
+    List<String> items=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +48,17 @@ public class PriorityCard extends AppCompatActivity {
         eventBtn = findViewById(R.id.eventBtn);
         saveBtn = findViewById(R.id.saveBtn);
 
-        /**loadItems();
+        loadItems();
 
         ItemAdapter.OnLongClickListener onLongClickListener = new ItemAdapter.OnLongClickListener() {
             @Override
             public void onItemClicked(int position) {
                 //Deletes the item from the model
-                items.remove(position);
+                CardHolder card = new CardHolder();
+                card.updatedCard(items.get(position));
+                //items.remove(position);
                 //Notify the adapter
-                itemsAdapter.notifyItemRemoved(position);
+                itemsAdapter.notifyItemChanged(position);
                 Toast.makeText(getApplicationContext(), "item was remove", Toast.LENGTH_SHORT).show();
                 saveItems();
             }
@@ -64,7 +67,7 @@ public class PriorityCard extends AppCompatActivity {
 
         itemsAdapter = new ItemAdapter(items, onLongClickListener);
         rvItems.setAdapter(itemsAdapter);
-        rvItems.setLayoutManager(new LinearLayoutManager(this));**/
+        rvItems.setLayoutManager(new LinearLayoutManager(this));
 
 
         eventBtn= findViewById(R.id.eventBtn);
@@ -74,10 +77,12 @@ public class PriorityCard extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
-
-
+               //CardHolder card = new CardHolder();
+                //cards.add(card);
                 Intent i = new Intent(PriorityCard.this,CardHolder.class);
                 startActivity(i);
+
+                //saveItems();
 
 
                 //Toast.makeText(getApplicationContext(), cards.getString(), Toast.LENGTH_SHORT).show();
@@ -89,7 +94,7 @@ public class PriorityCard extends AppCompatActivity {
 
     }
 
-    /**private File getDataFile() {
+    private File getDataFile() {
         return new File(getFilesDir(), "data.txt");
     }
 
@@ -110,7 +115,7 @@ public class PriorityCard extends AppCompatActivity {
         } catch(IOException e){
             Log.e("MainActivity","Error writing item", e );
         }
-    }**/
+    }
 
 
     //This function saves items by writing them into the data file
