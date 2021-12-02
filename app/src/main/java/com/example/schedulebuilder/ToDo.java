@@ -41,7 +41,31 @@ public class ToDo {
     int[] times = new int[2];
   }
   
-  public int calculateEfficiency(Day day, int startTime, int endTime){
+  public float calculateEfficiency(Day day, int startTime, int endTime){
+    float efficiency = 0;
+    Event e;
+    for (int i = 0; i<day.getByTime().size(); i++){
+      e = day.getByTime().get(i);
+      if (e.getStartTime() >= startTime){
+        efficiency += overlap(e,startTime,endTime);
+        if (e.getEndTime > endTime)
+          break;
+      }
+    }
+    return efficiency;
+  }
+  
+  public int overlap(Event e, int startTime, int endTime){
+    if (startTime < e.getStartTime() && endTime < e.getEndTime())
+      return endTime - e.getStartTime();
     
+    if (startTime < e.getStartTime() && endTime > e.getEndTime())
+      return e.getEndTime() - e.getStartTime();
+    
+    if (startTime > e.getStartTime() && endTime > e.getEndTime())
+      return e.getEndTime() - startTime;
+    
+    if (startTime > e.getStartTime() && endTime < e.getEndTime())
+      return endTime - e.getStartTime();
   }
 }
