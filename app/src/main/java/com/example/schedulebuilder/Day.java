@@ -17,7 +17,7 @@ public class Day { // effectively a fancy priority queue
   public void push(Event e){ // adds events to both arrays, sorting them as needed for both
     int counter = byTime.size();
     for (int i = 0; i<counter; i++)
-      if (e.getStartTime() <= bytime.get(i).getStartTime()){
+      if (e.getStartTime() <= byTime.get(i).getStartTime()){
         byTime.add(i,e);
         break;
       }
