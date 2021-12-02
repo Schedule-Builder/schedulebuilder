@@ -3,6 +3,10 @@ package com.example.schedulebuilder;
 import java.util.ArrayList;
 
 public class Day { // effectively a fancy priority queue
+  public Day(){
+    
+  }
+  
   ArrayList<Event> byTime = new ArrayList<Event>(); // this arrayList is sorted based upon the time that the events start
   ArrayList<Event> byPriority = new ArrayList<Event>(); // this arrayList is sorted based upon the priority level of each event
   
