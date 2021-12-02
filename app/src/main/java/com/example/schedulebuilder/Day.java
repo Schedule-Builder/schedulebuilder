@@ -2,9 +2,9 @@ package com.example.schedulebuilder;
 
 import java.util.ArrayList;
 
-public class Day {
-  ArrayList<Event> byTime = new ArrayList<Event>();
-  ArrayList<Event> byPriority = new ArrayList<Event>();
+public class Day { // effectively a fancy priority queue
+  ArrayList<Event> byTime = new ArrayList<Event>(); // this arrayList is sorted based upon the time that the events start
+  ArrayList<Event> byPriority = new ArrayList<Event>(); // this arrayList is sorted based upon the priority level of each event
   
   public ArrayList<Event> getByTime(){
     return byTime;
@@ -14,7 +14,7 @@ public class Day {
     return byPriority;
   }
 
-  public void push(Event e){
+  public void push(Event e){ // adds events to both arrays, sorting them as needed for both
     int counter = byTime.size();
     for (int i = 0; i<counter; i++)
       if (e.getStartTime() <= bytime.get(i).getStartTime()){
@@ -33,21 +33,21 @@ public class Day {
       byPriority.add(e);
   }
   
-  public int findInTime(Event e){
+  public int findInTime(Event e){ // finds an event in the byTime arrayList
     for (int i = 0; i < byTime.size(); i++)
       if (e.getName().equals(byTime.get(i).getName()))
         return i;
     return -1;
   }
     
-  public int findInPriority(Event e){
+  public int findInPriority(Event e){ // finds an event in the byPriority arrayList
     for (int i = 0; i < byPriority.size(); i++)
       if (e.getName().equals(byPriority.get(i).getName()))
         return i;
     return -1;
   }
 
-  public void print(){
+  public void print(){ // prints the events in the lists (Event needs a toString() in order to work)
     for (int i = 0; i<byTime.size(); i++)
       System.out.println(byTime.get(i));
     System.out.println();
