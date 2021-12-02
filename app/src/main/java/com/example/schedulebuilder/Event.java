@@ -49,7 +49,7 @@ public class Event{
     }
 	
     public int getMinTime(){
-        return endTime;
+        return minTime;
     }	
     
     
