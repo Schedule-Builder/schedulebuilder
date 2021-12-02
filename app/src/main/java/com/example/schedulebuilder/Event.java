@@ -83,7 +83,7 @@ public class Event{
 	
     
     // converts to military time from regular time
-    public void toMilitary(int time){
+    /*public void toMilitary(int time){
         if (e.morning && e.startTime >= 1200)
             e.startTime -= 1200;
         else if (!e.morning && e.startTime < 1200)
@@ -118,7 +118,7 @@ public class Event{
             if (e.endTime < 100)
                 e.endTime += 1200;
         };
-    }
+    }*/
     
     // displays the int time as a string an the proper format (military time)
     public String displayTime(int time){
