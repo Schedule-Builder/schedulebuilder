@@ -9,16 +9,18 @@ public class Event{
     private boolean morning; // this variable tells whether it is morning (true) or after noon (false)
     private int startTime; // this variable includes the start time of the event
     private int endTime; // this variable includes the end time of the event
-    private int priority; // this variable contains the priority level of the event, which is important for the bot
+    private float priority; // this variable contains the priority level of the event, which is important for the bot
+    private int minTime; // this variable describes the minimum amount of time that this event should last
     
     //this method is to make the event based on what the user initially puts in
-    public void makeEvent(String name, boolean locked, boolean morning, int startTime, int endTime, int priority){
+    public void makeEvent(String name, boolean locked, boolean morning, int startTime, int endTime, float priority, int minTime){
         this.name = name;
         this.locked = locked;
         this.morning = morning;
         this.startTime = startTime;
         this.endTime = endTime;
         this.priority = priority;
+	this.minTime = minTime;
     }
     
     // typical getters and setters
@@ -42,9 +44,13 @@ public class Event{
         return endTime;
     }
     
-    public int getPriority(){
+    public float getPriority(){
         return priority;
     }
+	
+    public int getMinTime(){
+        return endTime;
+    }	
     
     
     public void setName(String name){
@@ -67,46 +73,17 @@ public class Event{
         this.endTime = endTime;
     }
     
-    public void setPriority(int priority){
+    public void setPriority(float priority){
         this.priority = priority;
     }
     
-    // To allow the sort method to sort by start time
-    public static Comparator<Event> EventStart = new Comparator<Event>() {
-
-	public int compare(Event e1, Event e2) {
-
-	   int time1 = e1.getStartTime();
-	   int time2 = e2.getStartTime();
-
-	   /*For ascending order*/
-	   return time1-time2;
-
-	   /*For descending order*/
-	   //rollno2-rollno1;
-        
-       // implementation: Collections.sort(arraylist, Event.EventStart);
-   }};
-    
-    // To allow the sort method to sort by priority level
-    public static Comparator<Event> PLevel = new Comparator<Event>() {
-
-	public int compare(Event e1, Event e2) {
-
-	   int time1 = e1.getPriority();
-	   int time2 = e2.getPriority();
-
-	   /*For ascending order*/
-	   return time1-time2;
-
-	   /*For descending order*/
-	   //rollno2-rollno1;
-        
-       // implementation: Collections.sort(arraylist, Event.PLevel);
-   }};
+    public void setMinTime(int minTime){
+        this.minTime = minTime;
+    }	
+	
     
     // converts to military time from regular time
-    public void toMilitary(Event e){
+    public void toMilitary(int time){
         if (e.morning && e.startTime >= 1200)
             e.startTime -= 1200;
         else if (!e.morning && e.startTime < 1200)
@@ -119,7 +96,7 @@ public class Event{
     }
     
     // converts to regular time from military
-    public int fromMilitary(Event e){
+    public int fromMilitary(int time){
         if (e.startTime >= 1200){
             e.morning = false;
             if (e.startTime >= 1300)
