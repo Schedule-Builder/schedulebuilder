@@ -10,6 +10,10 @@ public class ToDo {
   private ArrayList<Integer> endTime = new ArrayList<Integer>(); // a collection of the preferred end times to work on the event (corresponds with the startTime array list)
   private float priority; // the priority level
   
+  public ToDo{
+    
+  }
+  
   // auto inserts an event into the day specified where most "efficient"
   public void autoMakeEvent(Day day){
     if (startTime.size() == 0){
@@ -29,19 +33,25 @@ public class ToDo {
   public int[] makeTime(Day day, int timeNeeded){
     int[] times = new int[2];
     Event e;
-    int counter = 0;
-    int efficiency;
-    for (int i = 0; day.getByPriority().get(i) == 0; i++){
-      e = day.getByPriority().get(i);
-      if (e.getEndTime()-e.getStartTime() <= timeNeeded){
-        times[0] = e.getStartTime();
-        times[1] = e.getEndTime();
-        return times;
+    int efficiency = Integer.MAX_VALUE;
+    int temp;
+    int counter;
+    for (int i = 0; i<day.getByTime().size(); i++){
+      e = day.getByTime().get(i);
+      counter = i+1;
+      if (e.getEndTime()-e.getStartTime() >= timeNeeded){
+        temp = calculateEfficiency(day,e.getStartTime(),e.getEndTime())
+        if (temp <= 0){
+          times[0] = e.getStartTime();
+          times[1] = e.getEndTime();
+          return times;
+        }
+        else
+          if (temp < efficiency)
+            efficiency = temp;
       }
+      if (counter < day.getByTime())
     }
-    /*while (true){
-      e = counter.
-    }*/
   }
   
   // functions the same as the one before, but checks for timeslots between the input start and end time
@@ -57,7 +67,7 @@ public class ToDo {
     for (int i = 0; i<day.getByTime().size(); i++){
       e = day.getByTime().get(i);
       if (e.getStartTime() >= startTime){
-        efficiency += overlap(e,startTime,endTime)*e.getPriority();
+        efficiency += overlap(e,startTime,endTime)*(priority - e.getPriority());
         if (e.getEndTime > endTime)
           break;
       }
