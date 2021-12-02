@@ -10,6 +10,7 @@ public class ToDo {
   private ArrayList<Integer> endTime = new ArrayList<Integer>(); // a collection of the preferred end times to work on the event (corresponds with the startTime array list)
   private float priority; // the priority level
   
+  // auto inserts an event into the day specified where most "efficient"
   public void autoMakeEvent(Day day){
     if (startTime.size() == 0){
       day.byPriority.get(0)
@@ -19,10 +20,12 @@ public class ToDo {
     }
   }
   
+  // allows the user to manually add the event into the Day, auto-inserting the premade
   public void makeEvent(){
     // takes to event creation screen, inserting toDo values for the event
   }
   
+  // this method is what will find the most "efficient" time slot that the event can be added to, returning the start and end time as an int array
   public int[] makeTime(Day day, int timeNeeded){
     int[] times = new int[2];
     Event e;
@@ -41,10 +44,13 @@ public class ToDo {
     }*/
   }
   
-  public int[] makeTime(Day day, int timeNeeded, int startTime, int endTime){
+  // functions the same as the one before, but checks for timeslots between the input start and end time
+  /*public int[] makeTime(Day day, int timeNeeded, int startTime, int endTime){
     int[] times = new int[2];
-  }
+  }*/
   
+  // efficiency represents how well the times inserted fit within the schedule built
+  // it is calculated by multiplying the overlap time by the priority level (the lower the efficiency number, the better)
   public float calculateEfficiency(Day day, int startTime, int endTime){
     float efficiency = 0;
     Event e;
@@ -59,6 +65,7 @@ public class ToDo {
     return efficiency;
   }
   
+  // calculates the amount of time that the event is overlapping with the times given
   public int overlap(Event e, int startTime, int endTime){
     if (startTime < e.getStartTime() && endTime < e.getEndTime())
       return endTime - e.getStartTime();
