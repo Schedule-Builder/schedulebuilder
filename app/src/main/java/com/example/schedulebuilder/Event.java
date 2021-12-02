@@ -13,7 +13,7 @@ public class Event{
     private int minTime; // this variable describes the minimum amount of time that this event should last
     
     //this method is to make the event based on what the user initially puts in
-    public void makeEvent(String name, boolean locked, boolean morning, int startTime, int endTime, float priority, int minTime){
+    public Event(String name, boolean locked, boolean morning, int startTime, int endTime, float priority, int minTime){
         this.name = name;
         this.locked = locked;
         this.morning = morning;
