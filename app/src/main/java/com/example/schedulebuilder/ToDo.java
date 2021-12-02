@@ -2,14 +2,13 @@ package com.example.schedulebuilder;
 import java.util.ArrayList;
 
 public class ToDo {
-  private String name;
-  private int minTime;
-  private int maxTime;
-  private int dueDate;
-  private int dueTime;
-  private ArrayList<Integer> startTime = new ArrayList<Integer>();
-  private ArrayList<Integer> endTime = new ArrayList<Integer>();
-  private float priority;
+  private String name; // the name of the task that neeeds to be done
+  private int timeNeeded; // the estimated amount of time needed to complete this task
+  private int dueDate; // the day by which the task needs to be completed
+  private int dueTime; // the time by which the task needs to be completed
+  private ArrayList<Integer> startTime = new ArrayList<Integer>(); // a collection of the preferred start times to work on the event
+  private ArrayList<Integer> endTime = new ArrayList<Integer>(); // a collection of the preferred end times to work on the event (corresponds with the startTime array list)
+  private float priority; // the priority level
   
   public void autoMakeEvent(Day day){
     if (startTime.size() == 0){
