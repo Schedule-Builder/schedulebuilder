@@ -26,6 +26,8 @@ public class ToDo {
   public int[] makeTime(Day day, int timeNeeded){
     int[] times = new int[2];
     Event e;
+    int counter = 0;
+    int efficiency;
     for (int i = 0; day.getByPriority().get(i) == 0; i++){
       e = day.getByPriority().get(i);
       if (e.getEndTime()-e.getStartTime() <= timeNeeded){
@@ -34,7 +36,9 @@ public class ToDo {
         return times;
       }
     }
-    int efficiency = calculateEfficiency(times[0],times[1]);
+    /*while (true){
+      e = counter.
+    }*/
   }
   
   public int[] makeTime(Day day, int timeNeeded, int startTime, int endTime){
@@ -47,7 +51,7 @@ public class ToDo {
     for (int i = 0; i<day.getByTime().size(); i++){
       e = day.getByTime().get(i);
       if (e.getStartTime() >= startTime){
-        efficiency += overlap(e,startTime,endTime);
+        efficiency += overlap(e,startTime,endTime)*e.getPriority();
         if (e.getEndTime > endTime)
           break;
       }
