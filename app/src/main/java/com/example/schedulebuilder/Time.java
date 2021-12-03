@@ -48,11 +48,11 @@ public class Time {
   
   // converts times into an addable format
   public static int toOperate(int time){
-    return time/5*3+time%100;
+    return time/100*60+time%100;
   }
   
   public static int fromOperate(int time){
-    return time/3*5+time%60;
+    return time/60*100+time%60;
   }
   
   /*public int toMilitary(int time, bool morning){
