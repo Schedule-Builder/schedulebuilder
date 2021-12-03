@@ -15,7 +15,7 @@ public class ToDo {
   
   // auto inserts an event into the day specified where most "efficient"
   public void autoMakeEvent(Day day){
-    this.freestTime(this.findFreeTime(Day));
+    this.freestTime(day, this.findFreeTime(day));
   }
   
   // allows the user to manually add the event into the Day, auto-inserting the premade
