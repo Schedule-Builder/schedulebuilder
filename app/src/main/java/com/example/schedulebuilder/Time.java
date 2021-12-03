@@ -26,12 +26,6 @@ public class Time {
     this.systemSetting = systemSetting;
   }
   
-  public int add(int time){
-    if (this.time > time)
-      return this.time+time-(this.time/100-time/100)*40;
-    return time+this.time-(time/100-this.time/100)*40;
-  }
-  
   public int difference(int time){
     if (this.time > time)
       return this.time-time-(this.time/100-time/100)*40;
