@@ -55,9 +55,9 @@ public class ToDo {
   }
   
   // functions the same as the one before, but checks for timeslots between the input start and end time
-  /*public int[] makeTime(Day day, int timeNeeded, int startTime, int endTime){
+  public int[] makeTime(Day day, int timeNeeded, int startTime, int endTime){
     int[] times = new int[2];
-  }*/
+  }
   
   // efficiency represents how well the times inserted fit within the schedule built
   // it is calculated by multiplying the overlap time by the priority level (the lower the efficiency number, the better)
@@ -110,5 +110,11 @@ public class ToDo {
     while (i<day.getByTime().size()-1);
     if (ans.size() % 2 != 0)
       ans.add(e.getEndTime());
+  }
+  
+  public int ()
+  
+  public void insertEvent(Day day, Event e, int startTime, int endTime){
+    
   }
 }
