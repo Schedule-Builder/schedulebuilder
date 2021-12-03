@@ -15,7 +15,7 @@ public class ToDo {
   
   // auto inserts an event into the day specified where most "efficient"
   public void autoMakeEvent(Day day){
-    this.findFreeTime(Day)
+    this.freestTime(this.findFreeTime(Day));
   }
   
   // allows the user to manually add the event into the Day, auto-inserting the premade
@@ -24,7 +24,7 @@ public class ToDo {
   }
   
   // this method is what will find the most "efficient" time slot that the event can be added to, returning the start and end time as an int array
-  public int[] makeTime(Day day){
+  /*public int[] makeTime(Day day){
     int[] times = new int[2];
     Event e;
     int efficiency = Integer.MAX_VALUE;
@@ -51,7 +51,7 @@ public class ToDo {
   // functions the same as the one before, but checks for timeslots between the input start and end time
   public int[] makeTime(Day day, int timeNeeded, int startTime, int endTime){
     int[] times = new int[2];
-  }
+  }*/
   
   // efficiency represents how well the times inserted fit within the schedule built
   // it is calculated by multiplying the overlap time by the priority level (the lower the efficiency number, the better)
@@ -93,6 +93,7 @@ public class ToDo {
     while (i<day.getByTime().size()-1);
     if (ans.size() % 2 != 0)
       ans.add(e.getEndTime());
+    return ans;
   }
   
   public Day freestTime(Day day, ArrayList<Integer> arr){
