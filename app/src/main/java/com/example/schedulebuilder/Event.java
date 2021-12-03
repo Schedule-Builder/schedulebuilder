@@ -133,4 +133,24 @@ public class Event{
         return Integer.toString(time / 1000) + Integer.toString(time / 100 % 10) + ":" + Integer.toString(time % 100 - time % 10) + Integer.toString(time % 10)
  + " " + str;
     }
+	
+    // calculates the amount of time that the event is overlapping with the times given
+    public int overlap(int startTime, int endTime){
+    	Time t = new Time(endTime);
+  		if (startTime < this.startTime && endTime < this.endTime)
+    		return t.difference(this.startTime);
+    
+    	if (startTime < this.startTime && endTime > this.endTime){
+    		t.setTime(this.endTime);
+    		return  t.difference(this.startTime);
+    	}
+    
+    	if (startTime > this.startTime && endTime > this.endTime){
+      		t.setTime(startTime);
+      		return t.difference(this.endTime);
+    	}
+    
+    	if (startTime > this.startTime && endTime < this.endTime)
+      		return t.difference(this.startTime);
+  	}
 }
