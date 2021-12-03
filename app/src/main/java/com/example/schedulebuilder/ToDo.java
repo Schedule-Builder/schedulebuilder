@@ -89,4 +89,26 @@ public class ToDo {
     if (startTime > e.getStartTime() && endTime < e.getEndTime())
       return endTime - e.getStartTime();
   }
+  
+  // finds free time positions and add them to an arraylist in pairs, with the start time first and the end time second
+  public ArrayList<Integer> findFreeTime(Day day){
+    int i = 0;
+    Event e;
+    ArrayList<Integer> ans = new ArrayList<Integer>();
+    do {
+      e = day.getByTime().get(i);
+      if (e.getLocked()){
+        i++;
+        continue;
+      }
+      if (ans.size() % 2 == 0)
+        ans.add(e.getStartTime());
+      e = day.getByTime().get(i+1);
+      if (e.getLocked())
+        ans.add(e.getStartTime());
+    }
+    while (i<day.getByTime().size()-1);
+    if (ans.size() % 2 != 0)
+      ans.add(e.getEndTime());
+  }
 }
