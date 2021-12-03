@@ -2,16 +2,24 @@ package com.example.schedulebuilder;
 
 // takes care of the times, such as time operations and displaying time
 public class Time {
-  public Time(){
-    
-  }
-  
   private int time;
   private boolean morning; // if true, AM- if false, PM
   private boolean systemSetting = true; // if true, displays standard time- if false, displays military time
   
+  public Time(){
+    
+  }
+  
+  public Time(int time){
+    this.time = time;
+  }
+  
   public int getTime(){
     return time;
+  }
+  
+  public void setTime(int time){
+    this.time = time;
   }
   
   public void setSystemSetting(boolean systemSetting){
