@@ -137,7 +137,7 @@ public class Event{
     // calculates the amount of time that the event is overlapping with the times given
     public int overlap(int startTime, int endTime){
     	Time t = new Time(endTime);
-  		if (startTime < this.startTime && endTime < this.endTime)
+ 	if (startTime < this.startTime && endTime < this.endTime)
     		return t.difference(this.startTime);
     
     	if (startTime < this.startTime && endTime > this.endTime){
@@ -153,4 +153,6 @@ public class Event{
     	if (startTime > this.startTime && endTime < this.endTime)
       		return t.difference(this.startTime);
   	}
+	
+	return 0;
 }
