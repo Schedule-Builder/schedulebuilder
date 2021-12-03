@@ -5,7 +5,7 @@ public class ToDo {
   private String name; // the name of the task that neeeds to be done
   private int timeNeeded; // the estimated amount of time needed to complete this task
   private int dueDate; // the day by which the task needs to be completed
-  private Time dueTime = new Time(); // the time by which the task needs to be completed
+  private int dueTime; // the time by which the task needs to be completed
   private ArrayList<Time> bounds = new ArrayList<Time>(); // a collection of the boundsm alternating between start and end time
   private float priority; // the priority level
   
@@ -15,12 +15,7 @@ public class ToDo {
   
   // auto inserts an event into the day specified where most "efficient"
   public void autoMakeEvent(Day day){
-    if (startTime.size() == 0){
-      day.byPriority.get(0)
-    }
-    else{
-      
-    }
+    this.findFreeTime(Day)
   }
   
   // allows the user to manually add the event into the Day, auto-inserting the premade
