@@ -51,6 +51,10 @@ public class Time {
     return time/5*3+time%100;
   }
   
+  public static int fromOperate(int time){
+    return time/3*5+time%60;
+  }
+  
   /*public int toMilitary(int time, bool morning){
     
   }
