@@ -39,16 +39,20 @@ public class Day { // effectively a fancy priority queue
   
   public int findInTime(Event e){ // finds an event in the byTime arrayList
     for (int i = 0; i < byTime.size(); i++)
-      if (e.getName().equals(byTime.get(i).getName()))
+      if (e.getName().equals(byTime.get(i).getName()) && e.startTime == byTime.get(i).startTime)
         return i;
     return -1;
   }
-    
+
   public int findInPriority(Event e){ // finds an event in the byPriority arrayList
     for (int i = 0; i < byPriority.size(); i++)
-      if (e.getName().equals(byPriority.get(i).getName()))
+      if (e.getName().equals(byPriority.get(i).getName()) && e.startTime == byPriority.get(i).startTime)
         return i;
     return -1;
+  }
+  public void remove(Event e){
+    byTime.remove(findInTime(e));
+    byPriority.remove(findInPriority(e));
   }
   
   public void clear(){
