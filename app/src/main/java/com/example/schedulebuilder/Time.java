@@ -26,10 +26,19 @@ public class Time {
     this.systemSetting = systemSetting;
   }
   
+  public int add(int time){
+    return Time.toOperate(this.time) + Time.toOperate(time);
+  }
+  
   public int difference(int time){
     if (this.time > time)
-      return this.time-time-(this.time/100-time/100)*40;
-    return time-this.time-(time/100-this.time/100)*40;
+      return Time.toOperate(this.time)-Time.toOperate(time);
+    return Time.toOperate(time)-Time.toOperate(this.time);
+  }
+  
+  // converts times into an addable format
+  public static int toOperate(int time){
+    return time/5*3+time%100;
   }
   
   /*public int toMilitary(int time, bool morning){
