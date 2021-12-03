@@ -43,7 +43,7 @@ public class Time {
   public static int difference(int time1, int time2){
     if (time1 > time2)
       return Time.toOperate(time1)-Time.toOperate(time2);
-    return Time.toOperate(time2)-Time.toOperate(this.time1);
+    return Time.toOperate(time2)-Time.toOperate(time1);
   }
   
   // converts times into an addable format
