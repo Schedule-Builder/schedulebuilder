@@ -74,6 +74,10 @@ public class ToDo {
     return efficiency;
   }
   
+  public float calculateEfficiency(Event e, int overlap){
+    return overlap * (priority - e.getPriority());
+  }
+  
   // finds free time positions and add them to an arraylist in pairs, with the start time first and the end time second
   public ArrayList<Integer> findFreeTime(Day day){
     int i = 0;
@@ -98,6 +102,8 @@ public class ToDo {
   
   public Day freestTime(Day day, ArrayList<Integer> arr){
     Day focus = new Day();
+    Day temp = new Day();
+    float ftemp;
     int needed;
     float efficiency = Float.MAX_VALUE;
     int num;
@@ -108,15 +114,40 @@ public class ToDo {
         e = day.getByTime().get(i);
         num = e.overlap(arr.get(j*2),arr.get(j*2+1));
         if (num != 0)
-          focus.push(e);
-        if (focus.size()!=0 && num == 0) 
+          temp.push(e);
+        if (temp.size()!=0 && num == 0) 
           break;
       }
+      ftemp = this.efficiencyBlock(temp);
+      if (ftemp < efficiency){
+        efficiency = ftemp;
+        focus = temp;
+      }
+    }
+    this.insertEvent(day, focus.getbyTime().get(0).getStartTime, Time.add(focus.getbyTime().get(0).getStartTime, Time.fromOperate(timeNeeded)););
+  }
+  
+  public float efficiencyBlock(Day days){
+    float efficiency = Float.MAX_VALUE;
+    Event e = new Event();
+    int temp = timeNeeded;
+    int difference;
+    if (days.getbyTime().get(0) - days.getbyTime().get(days.getByTime().size()) < temp)
+      return efficiency;
+    efficiency = 0;
+    for (int i = 0; i < days.getByPriority().size(); i++)
+      e = days.getByPriority().get(i);
+      difference = Time.difference(e.getStartTime(),e.getEndTime())
+      if (temp <= difference){
+        efficiency += calculateEfficiency(e, temp);
+        return efficiency;
+      }
+      temp -= difference;
     }
   }
   
   // within a collection of events, finds the freest time possible that meets the time restraint
-  public int[] findTimes(Day day){
+  /*public int[] findTimes(Day day){
     int[] times = new int[2];
     Event e = new Event();
     int openTime = 0;
@@ -130,11 +161,13 @@ public class ToDo {
       }
       times[0] = 
     }
-  }
+  }*/
   
   public void insertEvent(Day day, int startTime, int endTime){
-    Day temp = new Day();
-    for (int i = 0; endTime > day.getByTime().get(i).getEndTime() && i < day.getByTime().size(); i++)
-      if ()
+    Event e = new Event(name, false, false, startTime, endTime, priority, timeNeeded);
+    day.push(e);
+    int index = day.findInTime(e);
+    day.remove(index+1)
+    day.getByTime().get(index+1).setStartTime(endTime);
   }
 }
