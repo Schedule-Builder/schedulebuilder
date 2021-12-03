@@ -5,9 +5,8 @@ public class ToDo {
   private String name; // the name of the task that neeeds to be done
   private int timeNeeded; // the estimated amount of time needed to complete this task
   private int dueDate; // the day by which the task needs to be completed
-  private int dueTime; // the time by which the task needs to be completed
-  private ArrayList<Integer> startTime = new ArrayList<Integer>(); // a collection of the preferred start times to work on the event
-  private ArrayList<Integer> endTime = new ArrayList<Integer>(); // a collection of the preferred end times to work on the event (corresponds with the startTime array list)
+  private Time dueTime; // the time by which the task needs to be completed
+  private ArrayList<Time> bounds = new ArrayList<Time>(); // a collection of the boundsm alternating between start and end time
   private float priority; // the priority level
   
   public ToDo{
