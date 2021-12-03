@@ -18,13 +18,16 @@ public class Time {
     this.systemSetting = systemSetting;
   }
   
-  // the input for both of these functions has the earlier time come first
-  public int add(int time1, int time2){
-    return time1+time2-(time2/100-time1/100)*40;
+  public int add(int time){
+    if (this.time > time)
+      return this.time+time-(this.time/100-time/100)*40;
+    return time+this.time-(time/100-this.time/100)*40;
   }
   
-  public int subtract(int time1, int time2){
-    return time2-time1-()(time2/100-time1/100)*40;
+  public int subtract(int time){
+    if (this.time > time)
+      return this.time-time-(this.time/100-time/100)*40;
+    return time-this.time-(time/100-this.time/100)*40;
   }
   
   /*public int toMilitary(int time, bool morning){
