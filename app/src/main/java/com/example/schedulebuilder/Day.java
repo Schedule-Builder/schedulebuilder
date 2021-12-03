@@ -50,6 +50,11 @@ public class Day { // effectively a fancy priority queue
         return i;
     return -1;
   }
+  
+  public void clear(){
+    byTime.clear();
+    byPriority.clear();
+  }
 
   public void print(){ // prints the events in the lists (Event needs a toString() in order to work)
     for (int i = 0; i<byTime.size(); i++)
