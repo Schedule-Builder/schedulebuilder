@@ -5,7 +5,7 @@ public class ToDo {
   private String name; // the name of the task that neeeds to be done
   private int timeNeeded; // the estimated amount of time needed to complete this task
   private int dueDate; // the day by which the task needs to be completed
-  private Time dueTime; // the time by which the task needs to be completed
+  private Time dueTime = new Time(); // the time by which the task needs to be completed
   private ArrayList<Time> bounds = new ArrayList<Time>(); // a collection of the boundsm alternating between start and end time
   private float priority; // the priority level
   
@@ -29,7 +29,7 @@ public class ToDo {
   }
   
   // this method is what will find the most "efficient" time slot that the event can be added to, returning the start and end time as an int array
-  public int[] makeTime(Day day, int timeNeeded){
+  public int[] makeTime(Day day){
     int[] times = new int[2];
     Event e;
     int efficiency = Integer.MAX_VALUE;
@@ -74,21 +74,6 @@ public class ToDo {
     return efficiency;
   }
   
-  // calculates the amount of time that the event is overlapping with the times given
-  public int overlap(Event e, int startTime, int endTime){
-    if (startTime < e.getStartTime() && endTime < e.getEndTime())
-      return endTime - e.getStartTime();
-    
-    if (startTime < e.getStartTime() && endTime > e.getEndTime())
-      return e.getEndTime() - e.getStartTime();
-    
-    if (startTime > e.getStartTime() && endTime > e.getEndTime())
-      return e.getEndTime() - startTime;
-    
-    if (startTime > e.getStartTime() && endTime < e.getEndTime())
-      return endTime - e.getStartTime();
-  }
-  
   // finds free time positions and add them to an arraylist in pairs, with the start time first and the end time second
   public ArrayList<Integer> findFreeTime(Day day){
     int i = 0;
@@ -111,9 +96,45 @@ public class ToDo {
       ans.add(e.getEndTime());
   }
   
-  public int ()
+  public Day freestTime(Day day, ArrayList<Integer> arr){
+    Day focus = new Day();
+    int needed;
+    float efficiency = Float.MAX_VALUE;
+    int num;
+    Event e = new Event();
+    for (int j = 0; j<arr.size()/2; j++){
+      needed = Time.fromOperate(timeNeeded);
+      for (int i = 0; i < day.getByTime().size(); i++){
+        e = day.getByTime().get(i);
+        num = e.overlap(arr.get(j*2),arr.get(j*2+1));
+        if (num != 0)
+          focus.push(e);
+        if (focus.size()!=0 && num == 0) 
+          break;
+      }
+    }
+  }
   
-  public void insertEvent(Day day, Event e, int startTime, int endTime){
-    
+  // within a collection of events, finds the freest time possible that meets the time restraint
+  public int[] findTimes(Day day){
+    int[] times = new int[2];
+    Event e = new Event();
+    int openTime = 0;
+    for (int i = 0; i < day.getByPriority().size(); i++){
+      e = day.getbyPriority().get(i);
+      openTime += Time.difference(e.getStartTime(),e.getEndTime());
+      if (openTime >= timeNeeded){
+        times[0] = e.getStartTime();
+        times[1] = e.getEndTime();
+        return times;
+      }
+      times[0] = 
+    }
+  }
+  
+  public void insertEvent(Day day, int startTime, int endTime){
+    Day temp = new Day();
+    for (int i = 0; endTime > day.getByTime().get(i).getEndTime() && i < day.getByTime().size(); i++)
+      if ()
   }
 }
