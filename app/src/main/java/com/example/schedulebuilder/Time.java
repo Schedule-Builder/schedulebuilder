@@ -10,6 +10,10 @@ public class Time {
   private boolean morning; // if true, AM- if false, PM
   private boolean systemSetting = true; // if true, displays standard time- if false, displays military time
   
+  public int getTime(){
+    return time;
+  }
+  
   public void setSystemSetting(boolean systemSetting){
     this.systemSetting = systemSetting;
   }
