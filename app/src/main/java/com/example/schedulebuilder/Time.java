@@ -36,6 +36,16 @@ public class Time {
     return Time.toOperate(time)-Time.toOperate(this.time);
   }
   
+  public static int add(int time1, int time2){
+    return Time.toOperate(time1) + Time.toOperate(time2);
+  }
+  
+  public static int difference(int time1, int time2){
+    if (time1 > time2)
+      return Time.toOperate(time1)-Time.toOperate(time2);
+    return Time.toOperate(time2)-Time.toOperate(this.time1);
+  }
+  
   // converts times into an addable format
   public static int toOperate(int time){
     return time/5*3+time%100;
