@@ -1,7 +1,5 @@
 package com.example.schedulebuilder;
 
-import java.util.Comparator;
-
 public class Event{
     
     private String name; // this variable is the name of the event
