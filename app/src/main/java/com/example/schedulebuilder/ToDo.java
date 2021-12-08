@@ -9,8 +9,18 @@ public class ToDo {
   private ArrayList<Time> bounds = new ArrayList<Time>(); // a collection of the boundsm alternating between start and end time
   private float priority; // the priority level
   
-  public ToDo{
+  // constructors
+  public ToDo(){
     
+  }
+  
+  public ToDo(String name, int timeNeeded, int dueDate, int dueTime, ArrayList<Time> bounds, float priority){
+    this.name = name;
+    this.timeNeeded = timeNeeded;
+    this.dueDate = dueDate;
+    this.dueTime = dueTime;
+    this.bounds = bounds;
+    this.priority = priority;
   }
   
   // auto inserts an event into the day specified where most "efficient"
