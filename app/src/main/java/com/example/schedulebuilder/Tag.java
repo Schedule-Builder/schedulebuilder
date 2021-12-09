@@ -82,8 +82,20 @@ public class Tag { // this class allows the user to be able to put in preset par
   }
   
   public int getDueDate(){
-    
+    return dueDate;
   }
+	
+	public int getDueTime(){
+		return dueTime;
+	}
+	
+	public ArrayList<Time> getBounds(){
+		return bounds;
+	}
+	
+	public String getColor(){
+		return color;
+	}
     
     
   public void setName(String name){
@@ -113,5 +125,25 @@ public class Tag { // this class allows the user to be able to put in preset par
   public void setMinTime(int minTime){
     this.minTime = minTime;
   }
+	
+	public void setTimeNeeded(int timeNeeded){
+    this.timeNeeded = timeNeeded;
+  }
+  
+  public void setDueDate(int dueDate){
+    this.dueDate = dueDate;
+  }
+	
+	public void setDueTime(int dueTime){
+		this.dueTime = dueTime;
+	}
+	
+	public void setBounds(ArrayList<Time> bounds){
+		this.bounds = bounds;
+	}
+	
+	public void setColor(String color){
+		this.color = color;
+	}
     
 }
