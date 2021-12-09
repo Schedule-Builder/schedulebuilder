@@ -14,6 +14,17 @@ public class Time {
     this.time = time;
   }
   
+  public Time(int time, boolean systemSetting){
+    this.time = time;
+    this.sysetmSetting = systemSetting;
+  }
+  
+  public Time(int time, boolean morning, boolean systemSetting){
+    this.time = time;
+    this.morning = morning;
+    this.sysetmSetting = systemSetting;
+  }
+  
   public int getTime(){
     return time;
   }
@@ -56,16 +67,27 @@ public class Time {
     return time/60*100+time%60;
   }
   
+  // converts the time to whatever it is not
+  public void convert(){
+    if (systemSetting){
+      this = Time.toMilitary(time,morning);
+    else
+      this = Time.toStandard(time);
+  }
+  
   // converts from standard time to military time
-  public void toMilitary(){
+  public static Time toMilitary(int time, boolean morning){
     if (morning && time >= 1200)
       time -= 1200;
     else if (!morning && time < 1200)
       time += 1200;
+    Time t = new Time(time, false);
+    return t;
   }
   
   // converts from military time to standard time
-  public void toStandard(){
+  public static Time toStandard(int time){
+    boolean morning;
     if (time >= 1200){
       morning = false;
       if (time >= 1300)
@@ -76,5 +98,6 @@ public class Time {
       if (time < 100)
         time += 1200;
     }
+    Time t = new Time(time, morning, true)
   }
 }
