@@ -51,15 +51,30 @@ public class Time {
     return time/100*60+time%100;
   }
   
+  // converts times to a presentable format
   public static int fromOperate(int time){
     return time/60*100+time%60;
   }
   
-  /*public int toMilitary(int time, bool morning){
-    
+  // converts from standard time to military time
+  public void toMilitary(){
+    if (morning && time >= 1200)
+      time -= 1200;
+    else if (!morning && time < 1200)
+      time += 1200;
   }
   
-  public Time toStandard(int time){
-    
-  }*/
+  // converts from military time to standard time
+  public void toStandard(){
+    if (time >= 1200){
+      morning = false;
+      if (time >= 1300)
+        time -= 1200;
+    }
+    else if (time < 1200){
+      morning = true;
+      if (time < 100)
+        time += 1200;
+    }
+  }
 }
