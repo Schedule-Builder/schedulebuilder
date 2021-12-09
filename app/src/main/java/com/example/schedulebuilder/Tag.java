@@ -20,7 +20,7 @@ public class Tag { // this class allows the user to be able to put in preset par
   private int timeNeeded; // the estimated amount of time needed to complete this task
   private int dueDate; // the day by which the task needs to be completed
   private int dueTime; // the time by which the task needs to be completed
-  private ArrayList<Time> bounds = new ArrayList<Time>(); // a collection of the boundsm alternating between start and end time
+  private ArrayList<Time> bounds = new ArrayList<Time>(); // a collection of the bounds alternating between start and end time
     
   // empty constructor
   public Tag(){
