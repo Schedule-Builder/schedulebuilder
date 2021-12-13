@@ -100,4 +100,15 @@ public class Time {
     }
     Time t = new Time(time, morning, true)
   }
+    
+  @Override
+  public String toString(){
+    String daytime = "PM";
+    if (systemSetting){
+      if (morning)
+        daytime = "AM";
+      return time / 100 + ":" + time % 100 + " " + daytime;
+    }
+    return time / 100 + ":" + time % 100;
+  }
 }
