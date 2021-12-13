@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/startText"
     android:layout_width="250dp"
     android:layout_height="350dp"
     android:scaleX="1"
@@ -94,17 +95,17 @@
 
     <EditText
         android:id="@+id/titleLine"
-        android:layout_width="206dp"
-        android:layout_height="53dp"
+        android:layout_width="227dp"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="casual"
+        android:hint="Title"
         android:inputType="textEmailSubject"
         android:selectAllOnFocus="false"
         android:singleLine="true"
-        android:text="Title"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textSize="14sp"
-        android:translationX="25dp"
+        android:translationX="20dp"
         android:translationY="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/title"
@@ -127,7 +128,7 @@
         android:translationY="20dp" />
 
     <TextView
-        android:id="@+id/startTime"
+        android:id="@+id/startText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -139,7 +140,7 @@
         android:translationX="-10dp" />
 
     <TextView
-        android:id="@+id/endTime"
+        android:id="@+id/endText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -165,7 +166,7 @@
 
     <EditText
         android:id="@+id/endTimeInput"
-        android:layout_width="52dp"
+        android:layout_width="54dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -184,10 +185,10 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="17dp"
         android:layout_marginBottom="7dp"
+        android:checked="false"
         android:scaleX=".75"
         android:scaleY=".75"
-        android:text="Lock"
-        android:checked="false"/>
+        android:text="Lock" />
 
     <Switch
         android:id="@+id/isMorning"
@@ -196,9 +197,29 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="7dp"
+        android:checked="false"
         android:scaleX=".75"
         android:scaleY=".75"
-        android:text="Military"
-        android:checked="false"/>
+        android:text="Military" />
+
+    <TextView
+        android:id="@+id/startTime"
+        android:layout_width="51dp"
+        android:layout_height="34dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="77dp"
+        android:layout_marginTop="113dp"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="115dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="12sp" />
 
 </RelativeLayout>

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ScheduleBuilder">
         <activity
+            android:name=".UpdateCard"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -21,9 +24,7 @@
         <activity
             android:name=".PriorityCard"
             android:theme="@style/AppDialogTheme" />
-        <activity
-            android:name=".CardHolder"/>
-
+        <activity android:name=".CardHolder" />
     </application>
 
 </manifest>

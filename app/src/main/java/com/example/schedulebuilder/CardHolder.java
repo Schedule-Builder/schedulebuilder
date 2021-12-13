@@ -1,5 +1,11 @@
 package com.example.schedulebuilder;
 
+
+
+import static com.example.schedulebuilder.Time.difference;
+import static com.example.schedulebuilder.Time.fromOperate;
+import static com.example.schedulebuilder.Time.toOperate;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,22 +17,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CardHolder extends PriorityCard{
 
 
-
+    Day d;
     Button saveBtn;
     Switch locked;
     Switch morning;
@@ -42,6 +42,7 @@ public class CardHolder extends PriorityCard{
     TextView end;
     RecyclerView rvItems;
     ItemAdapter itemsAdapter;
+    ArrayList<Event> arr;
 
     List<Event> card=new ArrayList<>();
 
@@ -49,6 +50,15 @@ public class CardHolder extends PriorityCard{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+       d = new Day();
+
+        if(getIntent().getSerializableExtra("card")==null){
+           // d= new Day();
+        }
+        else{
+            d = (Day) getIntent().getSerializableExtra("card");
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.priority_card);
 
@@ -65,71 +75,78 @@ public class CardHolder extends PriorityCard{
         start = findViewById(R.id.startTime);
         end = findViewById(R.id.endTime);
 
-       /** loadItems();
+        items.clear();
 
-
-
-
-
-
-
-
-
-
-            rvItems = findViewById(R.id.rvItems);
-
-            saveBtn = findViewById(R.id.saveBtn);
-
-            loadItems();
-
-          ItemAdapter.OnLongClickListener onLongClickListener = new ItemAdapter.OnLongClickListener() {
-                @Override
-                public void onItemClicked(int position) {
-                    //Deletes the item from the model
-                    items.remove(position);
-                    //Notify the adapter
-                    itemsAdapter.notifyItemRemoved(position);
-                    Toast.makeText(getApplicationContext(), "item was remove", Toast.LENGTH_SHORT).show();
-                    saveItems();
-                }
-
-            };
-            itemsAdapter = new ItemAdapter(items, onLongClickListener);
-            rvItems.setAdapter(itemsAdapter);
-            rvItems.setLayoutManager(new LinearLayoutManager(this));**/
          saveBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
+
                 prty.setText(priorityNum.getText());
                 explanation.setText(detailedExplanation.getText());
                 title.setText(titleLine.getText());
-                start.setText(endTimeInput.getText());
-                end.setText(startTimeInput.getText());
-                //Modify adapter that an item is inserted
-                String t = getString(title);
-                //Add item to the model
-                items.add(t);
+                end.setText(endTimeInput.getText());
+                start.setText(startTimeInput.getText());
+
+
                 int s = Integer.parseInt(start.getText().toString());
                 int e = Integer.parseInt(end.getText().toString());
+                int p = Integer.parseInt(prty.getText().toString());
                 //Event event = new Event(title.getText().toString(), true, true, Integer.valueOf(start.getText().toString()), Integer.valueOf(end.getText().toString()), Integer.valueOf(prty.getText().toString()));
-                Event event = new Event(title.getText().toString(), true, true, s, e, Integer.valueOf(prty.getText().toString()));
-               // Toast.makeText(getApplicationContext(), "here", Toast.LENGTH_SHORT).show();
-                card.add(event);
-                //Modify adapter that an item is inserted
-                //itemsAdapter.notifyItemInserted(items.size() - 1);
+                Event event = new Event(title.getText().toString(), true, true, s, e, p);
 
-                Toast.makeText(getApplicationContext(), Integer.toString(items.size()), Toast.LENGTH_SHORT).show();
+                d.push(event);
+                if (getIntent().getExtras().getBoolean("isChecked")){
+                    Toast.makeText(getApplicationContext(), "True", Toast.LENGTH_SHORT).show();
+                    arr = d.getByPriority();
+                }
+
+                else {
+                    arr = d.getByTime();
+                    Toast.makeText(getApplicationContext(), "False", Toast.LENGTH_SHORT).show();
+                }
+
+                for (int i = 0; i < arr.size(); i++) {
+
+                    String t = arr.get(i).getName();
+                    int st = arr.get(i).getStartTime();
+                    int et = arr.get(i).getEndTime();
+                    int pr = arr.get(i).getPriority();
+                    items.add(t + "        " + st + ":00 -" + et + ":00" + "    Priority:" + pr);
+                }
+
+
+                //Tests
+
+
+                Log.i("myTag","Military time to Minutes"+ Integer.toString(toOperate(123)));
+                Log.i("myTag","Minutes to Military Time"+ Integer.toString(fromOperate(83)));
+
+                Log.i("myTag","Find index in Priority List" +Integer.toString(d.findInPriority(event)));
+                Log.i("myTag","Find index in Time List"+Integer.toString(d.findInTime(event)));
+                // Log.i("myTag", Integer.toString(toOperate(123)));
+
+
+                //ime t = new Time(1323);
+
+
+
                 saveItems();
+                //saveCards();
 
                 priorityNum.getText().clear();
                 detailedExplanation.getText().clear();
                 titleLine.getText().clear();
+                endTimeInput.getText().clear();
+                startTimeInput.getText().clear();
+
+
 
 
                Intent i = new Intent(CardHolder.this,PriorityCard.class);
+               i.putExtra("cards", (Serializable) d);
                 startActivity(i);
 
 
@@ -141,62 +158,50 @@ public class CardHolder extends PriorityCard{
 
 
 
+
         //This function saves items by writing them into the data file
 
 
-       /** public void updateText(View view){
-            priority.setText(priorityNum.getText());
-            explanation.setText(detailedExplanation.getText());
-            title.setText(titleLine.getText());
-            start.setText(endDate.getText());
-            end.setText(startDate.getText());
+       public void updatedCard(String t) {
+           //Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
+           /**priorityNum.getText().clear();
+           detailedExplanation.getText().clear();
+           title.clear();
+           endTimeInput.getText().clear();
+           startTimeInput.getText().clear();**/
+           for (int i = 0; i < card.size(); i++) {
+               if (card.get(i).name == t) {
+                   priorityNum.setText( card.get(i).priority);
+                   ;
+                   //detailedExplanation = ;
+                   titleLine.setText(card.get(i).name);
+                   startTimeInput.setText(card.get(i).startTime);
+                   endTimeInput.setText(card.get(i).endTime);
+               }
+           }
+
+             //saveBtn = findViewById(R.id.saveBtn);
+          /** saveBtn.setOnClickListener(new View.OnClickListener() {
+
+               @Override
+               public void onClick(View view) {
+                  // saveItems();
+                   //saveCards();
+                   priorityNum.getText().clear();
+                   detailedExplanation.getText().clear();
+                   titleLine.getText().clear();
+                   Intent i = new Intent(CardHolder.this, PriorityCard.class);
+                   startActivity(i);
 
 
-        }**/
-       public void updatedCard(String t){
-         //  Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT).show();
-           setContentView(R.layout.priority_card);
-        for(int i=0; i<card.size();i++){
-            if(card.get(i).name == t){
-                priorityNum.setText(card.get(i).priority);;
-                //detailedExplanation = ;
-                titleLine.setText(card.get(i).name);
-                startTimeInput.setText(card.get(i).startTime);
-                endTimeInput.setText(card.get(i).endTime);
-            }
-            }
-
-        }
-
+               }
+           });**/
+       }
 
 
         public String getString(TextView title){
             return title.getText().toString();
         }
-
-   /**private File getDataFile() {
-        return new File(getFilesDir(), "data.txt");
-    }
-
-    //This function will load items by reading every line of the data file
-    private void loadItems() {
-        try {
-            items = new ArrayList<>(FileUtils.readLines(getDataFile(), Charset.defaultCharset()));
-        } catch (IOException e) {
-            Log.e("MainActivity","Error reading item", e );
-            items = new ArrayList<>();
-        }
-
-    }
-
-    public void saveItems(){
-        try {
-            FileUtils.writeLines(getDataFile(), items);
-        } catch(IOException e){
-            Log.e("MainActivity","Error writing item", e );
-        }
-    }**/
-
 
 
     //This function saves items by writing them into the data file
