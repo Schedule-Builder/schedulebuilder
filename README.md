@@ -20,8 +20,8 @@
 - [x] User is able to make event cards
 - [x] User can check the day and week of the month
 - [x] User is able to choose the priority of the cards
-* Cards can be ordered based on what the user chose as priority
-* User can see a simple to-do list
+- [x]Cards can be ordered based on what the user chose as priority
+- [x]User can see a simple to-do list
 **Optional Nice-to-have Stories**
 
 * User is able to customize their own calender and event cards
@@ -128,4 +128,7 @@ Currently we are trying to get the title of the event card to show up on the day
 
 ## Update 3:
 https://github.com/Schedule-Builder/ScheduleBuilder/blob/master/Schedule_Builder_Update3.gif
+
+## Update 4:
+Schedule Build is now able to sort and order events based on priority and time. It can also change from military and normal time.
      
